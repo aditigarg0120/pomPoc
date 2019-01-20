@@ -38,14 +38,13 @@ public class SearchResultPage extends Base {
 
 		String pagesearch = driver.getCurrentUrl();
 		if (!searchResultClassname.isEmpty()) {
-			System.out.println(searchResultClassname.size());
+			System.out.println("total sites found - "+searchResultClassname.size());
 			String pattern = ".*Adaptavist.*";
 			Pattern r = Pattern.compile(pattern);
 			for (int i = 0; i < searchResultClassname.size(); i++) {
 				try {
 					Matcher m = r.matcher(searchResultClassname.get(i).getText());
-					if (m.matches()) {
-						System.out.println("Element" + searchResultClassname.get(i));
+					if (m.matches()) {						
 						driver.manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS);
 						searchResultClassname.get(i).click();
 						driver.manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS);

@@ -48,8 +48,8 @@ public class TestGooglePage extends Base{
 	
 	@AfterClass
 	public void tearDown(){	
+		System.out.println("1. TestGooglePage Executed...");
 		driver.quit();
-		driver=null;
 	}
 	
 	

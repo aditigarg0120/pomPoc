@@ -49,6 +49,8 @@ public class TestGooglePageScenarioTwo extends Base{
 	
 	@AfterClass
 	public void tearDown(){
+		System.out.println("2. TestGooglePageScenarioTwo Executed...");
+		System.out.println("All Test Cases Executed");
 		driver.quit();
 	}
 	
