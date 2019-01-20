@@ -40,6 +40,7 @@ public class TestGooglePageScenarioTwo extends Base{
 		Assert.assertEquals(resultPageLoadValidate,prop.getProperty("OtherInputName")+" - Google Search");
 	}
 	
+	@Test(priority=6)
 	public void ValidateStringPresenceinURL() throws IOException, InterruptedException{
 		String atlassianSearchResult=atlassianSearchResultPage.elementsList();
 		Assert.assertEquals(atlassianSearchResult, "No Adaptavist reference found");
