@@ -27,20 +27,19 @@ public class TestGooglePageScenarioTwo extends Base{
 		atlassianSearchResultPage= new AtlassianSearchResultPage();
 	}
 	
-	@Test(priority=1)
+	@Test(priority=4)
 	public void testGooglePageTitle(){
 		String title = googlePage.validateGooglePageTitle();
 		Assert.assertEquals(title, "Google");
 	}
 	
-	@Test(priority=2)
+	@Test(priority=5)
 	public void validateSearchResult(){
 		SearchResultPage searchResultPage = googlePage.search(prop.getProperty("OtherInputName"));
 		String resultPageLoadValidate=searchResultPage.validateSearchResultPageloaded();
 		Assert.assertEquals(resultPageLoadValidate,prop.getProperty("OtherInputName")+" - Google Search");
 	}
 	
-	@Test(priority=3)
 	public void ValidateStringPresenceinURL() throws IOException, InterruptedException{
 		String atlassianSearchResult=atlassianSearchResultPage.elementsList();
 		Assert.assertEquals(atlassianSearchResult, "No Adaptavist reference found");

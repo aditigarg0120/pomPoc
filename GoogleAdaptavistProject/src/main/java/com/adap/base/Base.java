@@ -14,16 +14,16 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 import com.adap.util.Utility;
 
 public class Base {
-	
-	public static WebDriver driver;
+
+	public static WebDriver driver = null;
 	public static Properties prop;
-	public  static EventFiringWebDriver e_driver;
-	//public static WebEventListener eventListener;
-	
-	public Base(){
+	public static EventFiringWebDriver e_driver;
+
+	public Base() {
 		try {
 			prop = new Properties();
-			FileInputStream ip = new FileInputStream(System.getProperty("user.dir")+ "/src/main/resources/config.properties");
+			FileInputStream ip = new FileInputStream(
+					System.getProperty("user.dir") + "/src/main/resources/config.properties");
 			prop.load(ip);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -31,34 +31,26 @@ public class Base {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	public static void initialization(){
+
+	public static void initialization() {
 		String browserName = prop.getProperty("browser");
-		
-		if(browserName.equals("chrome")){
-		//	System.setProperty("webdriver.chrome.driver", "/Users/naveenkhunteta/Downloads/chromedriver");	
-			driver = new ChromeDriver(); 
+
+		if (browserName.equals("chrome")) {
+			driver = new ChromeDriver();
+		} else if (browserName.equals("FF")) {
+			driver = new FirefoxDriver();
 		}
-		else if(browserName.equals("FF")){
-		//	System.setProperty("webdriver.gecko.driver", "/Users/naveenkhunteta/Documents/SeleniumServer/geckodriver");	
-			driver = new FirefoxDriver(); 
-		}
-		
-		
+
 		e_driver = new EventFiringWebDriver(driver);
-		// Now create object of EventListerHandler to register it with EventFiringWebDriver
-		//eventListener = new WebEventListener();
-	//	e_driver.register(eventListener);
 		driver = e_driver;
-		
+
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
 		driver.manage().timeouts().pageLoadTimeout(Utility.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(Utility.IMPLICIT_WAIT, TimeUnit.SECONDS);
-		
+
 		driver.get(prop.getProperty("url"));
-		
+
 	}
 
 }

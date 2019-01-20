@@ -11,16 +11,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-
 import com.adap.base.Base;
 import com.adap.util.Utility;
-
 
 public class SearchResultPage extends Base {
 
 	@FindBy(className = "LC20lb")
 	List<WebElement> searchResultClassname;
-
 
 	// Initializing the Page Objects:
 	public SearchResultPage() {
@@ -29,11 +26,14 @@ public class SearchResultPage extends Base {
 
 	// Actions
 
+	// Method to get title of page
 	public String validateSearchResultPageloaded() {
 		return driver.getTitle();
 
 	}
 
+	// Method to get search list of web element which contains particular string
+	// and takes screenshot while navigating to each page
 	public void elementsList() throws InterruptedException {
 
 		String pagesearch = driver.getCurrentUrl();
@@ -49,16 +49,15 @@ public class SearchResultPage extends Base {
 						driver.manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS);
 						searchResultClassname.get(i).click();
 						driver.manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS);
-						Utility.takeScreenshotAtEndOfTest("Url_"+(i+1)+"_");						 
+						Utility.takeScreenshotAtEndOfTest("Url_" + (i + 1) + "_");
 						driver.navigate().to(pagesearch);
 						driver.manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS);
-						
+
 					}
 				} catch (TimeoutException e) {
 					System.out.println(
 							"Page: " + searchResultClassname.get(i).getText() + " did not load within 40 seconds!");
-				}
-				catch (IOException e) {
+				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

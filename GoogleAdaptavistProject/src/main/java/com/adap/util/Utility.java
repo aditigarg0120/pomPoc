@@ -2,6 +2,9 @@ package com.adap.util;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.JavascriptExecutor;
@@ -19,28 +22,15 @@ public class Utility extends Base{
 	public static long IMPLICIT_WAIT = 20;
 
 
-	public void switchToFrame() {
-		driver.switchTo().frame("mainpanel");
-	}
-
-	
-
+// Method to take screenshot in the folder "/screenshots/<current_date>/"
 	public static void takeScreenshotAtEndOfTest(String screenshotname) throws IOException {
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		String currentDir = System.getProperty("user.dir");
-		FileUtils.copyFile(scrFile, new File(currentDir + "/screenshots/" + screenshotname+System.currentTimeMillis() + ".png"));
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_yyyy");
+		LocalDate localDate = LocalDate.now();
+		FileUtils.copyFile(scrFile, new File(currentDir + "/screenshots/" + dtf.format(localDate) + "/" + screenshotname
+				+ System.currentTimeMillis() + ".png"));
 	}
 
-	
-	 public static void waitForLoad(WebDriver driver) {
-	        ExpectedCondition<Boolean> pageLoadCondition = new
-	                ExpectedCondition<Boolean>() {
-	                    public Boolean apply(WebDriver driver) {
-	                        return ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
-	                    }
-	                };
-	        WebDriverWait wait = new WebDriverWait(driver, 20);
-	        wait.until(pageLoadCondition);
-	    }
 	
 }

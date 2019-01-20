@@ -16,7 +16,6 @@ public class AtlassianSearchResultPage extends Base {
 	@FindBy(className = "LC20lb")
 	List<WebElement> searchResultClassname;
 
-
 	// Initializing the Page Objects:
 	public AtlassianSearchResultPage() {
 		PageFactory.initElements(driver, this);
@@ -24,31 +23,32 @@ public class AtlassianSearchResultPage extends Base {
 
 	// Actions
 
+	// Method to get title of page
 	public String validateSearchResultPageloaded() {
 		return driver.getTitle();
 
 	}
 
+	// Method to get search list of web element which doesnot contains particular
+	// string
 	public String elementsList() throws InterruptedException {
 
 		if (!searchResultClassname.isEmpty()) {
 			String urlListResult = StringUtils.EMPTY;
-			System.out.println(searchResultClassname.size());
 			String pattern = ".*Adaptavist.*";
 			Pattern r = Pattern.compile(pattern);
-			for(int i=0;i < searchResultClassname.size();i++) {			
+			for (int i = 0; i < searchResultClassname.size(); i++) {
 				Matcher m = r.matcher(searchResultClassname.get(i).getText());
 				if (m.matches()) {
-					return "Reference found at "+searchResultClassname.get(i).getText() ;
-				} 
+					return "Reference found at " + searchResultClassname.get(i).getText();
+				}
 			}
 			if (urlListResult.isEmpty()) {
 				return "No Adaptavist reference found";
-			} 
+			}
 		}
 		return "Error in loading result page";
 
 	}
 
 }
-

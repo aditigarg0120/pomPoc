@@ -1,6 +1,7 @@
-<suite name="My test suite">
-  <test name="testing">
+<suite name="My test suite" verbose="1" preserve-order="true">>
+  <test name="testing" parallel="none">>
     <classes>
+      <class name="com.adap.googletest.TestGooglePageScenarioTwo" />
       <class name="com.adap.googletest.TestGooglePage" />
     </classes>
   </test>

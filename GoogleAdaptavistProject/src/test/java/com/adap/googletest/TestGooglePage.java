@@ -1,16 +1,12 @@
 package com.adap.googletest;
 
 
-import static org.testng.Assert.assertTrue;
-
 import java.io.IOException;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 
 import com.adap.base.Base;
 import com.adap.pages.GooglePage;
@@ -51,11 +47,10 @@ public class TestGooglePage extends Base{
 	}
 	
 	@AfterClass
-	public void tearDown(){
+	public void tearDown(){	
 		driver.quit();
+		driver=null;
 	}
-	
-	
 	
 	
 	
