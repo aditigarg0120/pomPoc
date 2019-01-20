@@ -1,0 +1,7 @@
+<suite name="My test suite">
+  <test name="testing">
+    <classes>
+      <class name="com.adap.googletest.TestGooglePage" />
+    </classes>
+  </test>
+</suite>
