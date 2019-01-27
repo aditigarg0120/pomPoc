@@ -24,6 +24,7 @@ public class Base {
 			prop = new Properties();
 			FileInputStream ip = new FileInputStream(
 					System.getProperty("user.dir") + "/src/main/resources/config.properties");
+					System.setProperty("webdriver.chrome.driver","./src/main/resources/chromedriver.exe");
 			prop.load(ip);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
